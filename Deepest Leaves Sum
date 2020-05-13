@@ -1,0 +1,26 @@
+#Given a binary tree, return the sum of values of its deepest leaves.
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def deepestLeavesSum(self, root: TreeNode) -> int:
+        h = root
+        sum1 = 0
+        que = [h]
+        while que:
+            k = len(que)
+            sum1 = 0
+            for i in range(k):
+                a = que.pop(0)
+                if not a:
+                    continue
+                sum1 = sum1 + a.val
+                if a.left:
+                    que.append(a.left)
+                if a.right:
+                    que.append(a.right)
+        return sum1
+                
