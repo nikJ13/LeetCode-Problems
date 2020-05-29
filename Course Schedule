@@ -1,0 +1,45 @@
+******QUESTION*********
+There are a total of numCourses courses you have to take, labeled from 0 to numCourses-1.
+
+Some courses may have prerequisites, for example to take course 0 you have to first take course 1, which is expressed as a pair: [0,1]
+
+Given the total number of courses and a list of prerequisite pairs, is it possible for you to finish all courses?
+Example:
+Input: numCourses = 2, prerequisites = [[1,0]]
+Output: true
+Explanation: There are a total of 2 courses to take. 
+             To take course 1 you should have finished course 0. So it is possible.
+             
+Input: numCourses = 2, prerequisites = [[1,0],[0,1]]
+Output: false
+Explanation: There are a total of 2 courses to take. 
+             To take course 1 you should have finished course 0, and to take course 0 you should
+             also have finished course 1. So it is impossible.
+            
+***********************
+class Solution:
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        indegree = [0*j for j in range(numCourses)]
+        # first, list the indegrees of every vertex based on the prerequisites given
+        for i in prerequisites:
+            indegree[i[0]] += 1
+        stack = []
+        count = 0
+        # append those vertices who have no prerequisites (who have indegress as zero)
+        for j in range(len(indegree)):
+            if indegree[j]==0:
+                stack.append(j)
+        while stack:
+            a = stack.pop()
+            # every popped element is counted; here the graph is being traversed
+            count += 1
+            for g in prerequisites:
+                # here checking if the element popped from the stack is a prerequisite or not
+                if g[1]==a:
+                    # if true, then the point that the prerequisite points to will have decrement in its
+                    # indegree value
+                    indegree[g[0]] -= 1
+                    # if the indegree value of a prerequisite is zero, then it is added into the stack
+                    if indegree[g[0]]==0:
+                        stack.append(g[0])
+        return count==numCourses
