@@ -1,0 +1,43 @@
+*****QUESTION*******
+Given a binary tree, return all root-to-leaf paths.
+Example:
+
+Input:
+
+   1
+ /   \
+2     3
+ \
+  5
+
+Output: ["1->2->5", "1->3"]
+********************
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def binaryTreePaths(self, root: TreeNode) -> List[str]:
+        if not root:
+            return []
+        path = [str(root.val)]
+        l= []
+        a = root
+        def recurse(root,path,l):
+            
+            if not root.left and not root.right:
+                l.append("->".join(path))
+                
+            if root.left:
+                path.append(str(root.left.val))
+                recurse(root.left,path,l)
+                path.pop()
+            if root.right:
+                path.append(str(root.right.val))
+                recurse(root.right,path,l)
+                path.pop()
+                
+        recurse(root,path,l)
+        return l
