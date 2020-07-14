@@ -1,0 +1,76 @@
+********QUESTION**********
+Given two binary trees, write a function to check if they are the same or not.
+
+Two binary trees are considered the same if they are structurally identical and the nodes have the same value.
+
+Example 1:
+
+Input:     1         1
+          / \       / \
+         2   3     2   3
+
+        [1,2,3],   [1,2,3]
+
+Output: true
+Example 2:
+
+Input:     1         1
+          /           \
+         2             2
+
+        [1,2],     [1,null,2]
+
+Output: false
+Example 3:
+
+Input:     1         1
+          / \       / \
+         2   1     1   2
+
+        [1,2,1],   [1,1,2]
+
+Output: false
+**************************
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def isSameTree(self, p: TreeNode, q: TreeNode) -> bool:
+        if not p and not q:
+            return True
+        if not p or not q:
+            return False
+        q1 = [p]
+        q2 = [q]
+        f = 0
+        while q1 and q2:
+            if len(q1)!=len(q2):
+                return False
+            k = len(q1)
+            for i in range(k):
+                a1 = q1.pop(0)
+                a2 = q2.pop(0)
+                if not a1:
+                    continue
+                if not a2:
+                    continue
+                if a1.val != a2.val:
+                    return False
+                if a1.left and a2.left:
+                    q1.append(a1.left)
+                    q2.append(a2.left)
+                elif not a1.left and not a2.left:
+                    f = 1
+                else:
+                    return False
+                if a1.right and a2.right:
+                    q1.append(a1.right)
+                    q2.append(a2.right)
+                elif not a1.right and not a2.right:
+                    f = 1
+                else:
+                    return False
+        return True
