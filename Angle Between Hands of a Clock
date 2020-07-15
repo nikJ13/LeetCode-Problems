@@ -1,0 +1,14 @@
+************QUESTION*****************
+Given two numbers, hour and minutes. Return the smaller angle (in degrees) formed between the hour and the minute hand.
+*************************************
+class Solution:
+    def angleClock(self, hour: int, minutes: int) -> float:
+        hourangle = minutes*(1/2) + hour*5*6
+        minuteangle = minutes*6
+        if hourangle%360==0:
+            return 0
+        else:
+            if abs(hourangle-minuteangle)>180:
+                return 360 - abs(hourangle-minuteangle)
+            else:
+                return abs(hourangle-minuteangle)
