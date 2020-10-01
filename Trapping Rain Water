@@ -1,0 +1,40 @@
+class Solution {
+public:
+    int trap(vector<int>& height) {
+        int total_water = 0;
+        if(height.size() <=0){
+            return total_water;
+        }
+        for(int i=1;i<height.size()-1;i++){
+            int left_Max = leftMax(i,height);
+            int right_Max = rightMax(i,height);
+            int height_possible = min(right_Max,left_Max);
+            total_water  += height_possible - height[i];
+        }
+        return total_water;
+    }
+    int leftMax(int i,vector<int>& height){
+        int max = 0;    
+        for(int j=0;j<=i;j++){
+                if(height[j] > max){
+                    max = height[j];
+                }
+            }
+        return max;
+    }
+    int rightMax(int i,vector<int>& height){
+        int max = 0;    
+        for(int j=i;j <height.size();j++){
+                if(height[j] > max){
+                    max = height[j];
+                }
+            }
+        return max;
+    }
+    int min(int a, int b){
+        if(a<b){
+            return a;
+        }
+        return b;
+    }
+};
