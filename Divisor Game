@@ -1,0 +1,48 @@
+*************QUESTION*********************
+Alice and Bob take turns playing a game, with Alice starting first.
+
+Initially, there is a number N on the chalkboard.  On each player's turn, that player makes a move consisting of:
+
+Choosing any x with 0 < x < N and N % x == 0.
+Replacing the number N on the chalkboard with N - x.
+Also, if a player cannot make a move, they lose the game.
+
+Return True if and only if Alice wins the game, assuming both players play optimally.
+
+ 
+
+Example 1:
+
+Input: 2
+Output: true
+Explanation: Alice chooses 1, and Bob has no more moves.
+Example 2:
+
+Input: 3
+Output: false
+Explanation: Alice chooses 1, Bob chooses 1, and Alice has no more moves.
+ 
+
+Note:
+
+1 <= N <= 1000
+***************************************************
+import math
+class Solution:
+    def divisorGame(self, N: int) -> bool:
+        dp = [-1]*(N+1)  # needed for storing the status of numbers who have already been checked of the given condition; to avoid repeating cases
+        def recurse(N):
+            if N==1:
+                return 0
+            if dp[N]!=-1:
+                return dp[N]   # if the number has already been checked then return its current status
+            else:
+                for i in range(1,math.ceil(math.sqrt(N))):
+                    if N%i==0:
+                        if recurse(N-i)==0: # checks if the next move after the first move gives zero (which means alice wins); otherwise the other person wins
+                            dp[N]=1
+                            return 1
+                dp[N] = 0            
+                return 0
+        return recurse(N)
+                            
