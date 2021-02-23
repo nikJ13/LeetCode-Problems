@@ -1,0 +1,40 @@
+***********QUESTION******************
+Given a string and a string dictionary, find the longest string in the dictionary that can be formed by deleting some characters of the given string. If there are more than one possible results, return the longest word with the smallest lexicographical order. If there is no possible result, return the empty string.
+
+Example 1:
+Input:
+s = "abpcplea", d = ["ale","apple","monkey","plea"]
+
+Output: 
+"apple"
+Example 2:
+Input:
+s = "abpcplea", d = ["a","b","c"]
+
+Output: 
+"a"
+Note:
+All the strings in the input will only contain lower-case letters.
+The size of the dictionary won't exceed 1,000.
+The length of all the strings in the input won't exceed 1,000.
+***********************************************************
+class Solution:
+    def findLongestWord(self, s: str, d: List[str]) -> str:
+        dd = sorted(d,key=lambda k: (-len(k),k)) # here the lambda function gives priority to sort the array in descending order of the respective lengths if the strings; then priority is given to sort the array in alphabetical (lexographical) order
+        
+        n = len(d)
+        nn = len(s)
+        # function used to check whether the given string matches the string in the array
+        def calc(ss,st):
+            i,j = 0,0
+            p,m = len(ss),len(st)
+            while i<p and j<m:
+                if ss[i]==st[j]:
+                    j += 1
+                i += 1
+            return j==m
+        # iterating through the array of strings
+        for g in range(n):
+            if calc(s,dd[g]):
+                return dd[g]
+        return ""
