@@ -1,0 +1,39 @@
+****************QUESTION***********************
+Given an array words of strings made only from lowercase letters, return a list of all characters that show up in all strings within the list (including duplicates).  For example, if a character occurs 3 times in all strings but not 4 times, you need to include that character three times in the final answer.
+
+You may return the answer in any order.
+
+ 
+
+Example 1:
+
+Input: ["bella","label","roller"]
+Output: ["e","l","l"]
+Example 2:
+
+Input: ["cool","lock","cook"]
+Output: ["c","o"]
+ 
+
+Note:
+
+1 <= words.length <= 100
+1 <= words[i].length <= 100
+words[i] consists of lowercase English letters.
+Accepted
+113,051
+Submissions
+164,472
+***********************************************************
+PYTHON CODE - 
+
+class Solution:
+    def commonChars(self, words: List[str]) -> List[str]:
+        n = len(words)
+        res = Counter(words[0]) # The counter function returns a dictionary containing the frequencies of each character in the string (which is passed as an argument)
+        for i in range(1,n):
+            res = res & Counter(words[i])   # Here, the '&' symbol is used to find the intersection between the two dictionaries, thus, returning a dict with common key-value pairs
+        ans = []
+        for i in res:
+            ans += [i]*res[i] # adding the characters based on their frequencies in the dict
+        return ans
