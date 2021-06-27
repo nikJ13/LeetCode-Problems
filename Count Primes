@@ -1,0 +1,43 @@
+#############QUESTION####################
+Count the number of prime numbers less than a non-negative number, n.
+
+ 
+
+Example 1:
+
+Input: n = 10
+Output: 4
+Explanation: There are 4 prime numbers less than 10, they are 2, 3, 5, 7.
+Example 2:
+
+Input: n = 0
+Output: 0
+Example 3:
+
+Input: n = 1
+Output: 0
+ 
+
+Constraints:
+
+0 <= n <= 5 * 106
+########################
+class Solution:
+    def countPrimes(self, n: int) -> int:
+        if n==0 or n==1 or n==2:
+            return 0
+        else:
+            arr = [i for i in range(1,n)]
+            leng = n-1
+            for i in range(1,int(sqrt(leng))+1):
+                if arr[i]==0:
+                    continue
+                for j in range((arr[i]*arr[i])-1,leng,arr[i]):
+                    arr[j] = 0
+            #count = 0
+            #for k in range(1,leng):
+            #   if arr[k]!=0:
+            #      count += 1
+            # OR
+            res = Counter(arr)
+            return leng-res[0]-1
