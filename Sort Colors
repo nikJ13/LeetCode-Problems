@@ -21,4 +21,28 @@ class Solution:
                     t = nums[i]
                     nums[i] = nums[j]
                     nums[j] = t
+
+#############OPTIMIZED WAY TO DO IT##########################
+class Solution:
+    def sortColors(self, nums: List[int]) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        dict1 = {-1:-1}
+        n = len(nums)
+        for i in nums:
+            if i not in dict1:
+                dict1[i] = 1
+            else:
+                dict1[i] += 1
+        for i in range(n):
+            if 0 in dict1 and dict1[0]!=0:
+                nums[i] = 0
+                dict1[0]-=1
+            elif 1 in dict1 and dict1[1]!=0:
+                nums[i] = 1
+                dict1[1]-= 1
+            elif 2 in dict1 and dict1[2]!=0:
+                nums[i] = 2
+                dict1[2]-=1
                 
