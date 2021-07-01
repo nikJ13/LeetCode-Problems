@@ -1,0 +1,48 @@
+*******************QUESTION*******************************
+Write an algorithm to determine if a number n is happy.
+
+A happy number is a number defined by the following process:
+
+Starting with any positive integer, replace the number by the sum of the squares of its digits.
+Repeat the process until the number equals 1 (where it will stay), or it loops endlessly in a cycle which does not include 1.
+Those numbers for which this process ends in 1 are happy.
+Return true if n is a happy number, and false if not.
+
+ 
+
+Example 1:
+
+Input: n = 19
+Output: true
+Explanation:
+12 + 92 = 82
+82 + 22 = 68
+62 + 82 = 100
+12 + 02 + 02 = 1
+Example 2:
+
+Input: n = 2
+Output: false
+ 
+
+Constraints:
+
+1 <= n <= 231 - 1
+####################################
+# PYTHON CODE
+class Solution:
+    def isHappy(self, n: int) -> bool:
+        s = set()          # THE BASIC LOGIC IS THAT THE SUM OF THE SQUARES OF EACH DIGIT OF THE NUMBERS IS FOUND AND CHECKED IF THE SUM IS PRESENT IN SET OR NOT 
+        sum1 = 0           # IT IS OBSERVED THAT THE SUM OF SOME NUMBERS ARE REPEATING; THIS SHOWS THAT THOSE NUMBERS ARE NOT "HAPPY" (DO NOT SATISFY THE CONDITIONS GIVEN IN THE 
+        while True:        # QUESTION). THUS, A SET IS USED TO STORE ALL THE UNIQUE SUMS AND THEN IT IS CHECKED IF THE SUM IS PRESENT IN IT OR NOT. IF FOUND, THEN RETURN FALSE 
+            while n>0:     # ELSE RETURN TRUE IF THE SUM == 1
+                sum1 += (n%10)**2
+                n//=10
+            if sum1 in s:
+                return False
+            elif sum1==1:
+                return True
+            else:
+                s.add(sum1)
+                n = sum1
+                sum1 = 0
