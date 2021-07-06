@@ -1,0 +1,51 @@
+******************QUESTION*************************
+Given an array of strings arr. String s is a concatenation of a sub-sequence of arr which have unique characters.
+
+Return the maximum possible length of s.
+
+ 
+
+Example 1:
+
+Input: arr = ["un","iq","ue"]
+Output: 4
+Explanation: All possible concatenations are "","un","iq","ue","uniq" and "ique".
+Maximum length is 4.
+Example 2:
+
+Input: arr = ["cha","r","act","ers"]
+Output: 6
+Explanation: Possible solutions are "chaers" and "acters".
+Example 3:
+
+Input: arr = ["abcdefghijklmnopqrstuvwxyz"]
+Output: 26
+ 
+
+Constraints:
+
+1 <= arr.length <= 16
+1 <= arr[i].length <= 26
+arr[i] contains only lower case English letters.
+********************************************************
+class Solution:
+    def maxLength(self, arr: List[str]) -> int:
+        ans = 0
+        f = len
+        
+        def duplicate(ss):                              # helper function to find the duplicate characters in a string
+            return f(ss)!=f(set(ss))                    # here, if the length of the string is not equal to the length of the set of the string (where there are no duplicate
+                                                        # characters of the string), then that means the string has duplicate characters
+        def recurse(s,i):
+            nonlocal ans                           # this statement tells the recurse function that the 'ans' variable is a global variable, thus, at any point of recursion
+                                                   # the change in the variable value will be the change to the global variable value itself
+            ans = max(ans,f(s))                    
+            for j in range(i,n):                   # here, the for loop gives the chance for each of the new combination of the strings formed to concatenate with the rest
+                                                   # of the strings of the array and check for duplicate characters
+                new_s = s + arr[j]
+                if not duplicate(new_s):
+                    recurse(new_s,j+1)            # recurse function is called for the new string combination to concatenate with the rest of the strings in the array
+                
+        n = f(arr)
+        recurse("",0)
+        return ans
