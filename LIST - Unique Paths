@@ -46,3 +46,19 @@ class Solution:
                     collection[i][j] = collection[i][j] + collection[i-1][j]
         return collection[m-1][n-1]
                 
+#################### USING BACKTRACKING
+class Solution:
+    def uniquePaths(self, m: int, n: int) -> int:
+        collection = [[0 for g in range(n)] for _ in range(m)]       # KEEPING A TABLE FOR MEMOIZATION
+        def recurse(collection,i,j):
+            if i>=m or j>=n:
+                return 0
+            if collection[i][j]>0:
+                return collection[i][j]
+            if i==m-1 and j==n-1:
+                return 1
+            collection[i][j] = recurse(collection,i+1,j) + recurse(collection,i,j+1)
+            return collection[i][j]
+        
+        t = recurse(collection,0,0)
+        return t
