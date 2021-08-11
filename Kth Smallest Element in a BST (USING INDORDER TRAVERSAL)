@@ -53,3 +53,23 @@ class Solution:
                 return node.val
             count += 1
             node = node.right
+########################################
+class Solution:
+    def kthSmallest(self, root: TreeNode, k: int) -> int:
+       count = 1
+       ans = 0
+       def dfs(node):
+           nonlocal count,ans
+           if ans!=0:
+               return
+           if node:
+               dfs(node.left)
+               if count==k:
+                   ans = node.val
+                   #print(ans)
+                   count += 1
+                   return
+               count += 1
+               dfs(node.right)
+       dfs(root)
+       return ans
