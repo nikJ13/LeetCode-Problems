@@ -1,0 +1,83 @@
+*****************QUESTION****************************
+The set [1, 2, 3, ..., n] contains a total of n! unique permutations.
+
+By listing and labeling all of the permutations in order, we get the following sequence for n = 3:
+
+"123"
+"132"
+"213"
+"231"
+"312"
+"321"
+Given n and k, return the kth permutation sequence.
+
+ 
+
+Example 1:
+
+Input: n = 3, k = 3
+Output: "213"
+Example 2:
+
+Input: n = 4, k = 9
+Output: "2314"
+Example 3:
+
+Input: n = 3, k = 1
+Output: "123"
+ 
+
+Constraints:
+
+1 <= n <= 9
+1 <= k <= n!
+**************************************************************
+########## USING BACKTRACKING - BUT GIVES TLE
+class Solution:
+    def getPermutation(self, n: int, k: int) -> str:
+        visited = [0]*(n+1)
+        count = 0
+        ans = 0
+        def recurse(string1,visited):
+            nonlocal count,ans
+            if len(string1)==n:
+                count += 1
+                if count==k:
+                    ans = string1
+                return
+            for i in range(1,n+1):
+                if visited[i]==0:
+                    visited[i] = 1
+                    recurse(string1+str(i),visited)
+                    if ans!=0:
+                        return
+                    visited[i] = 0
+            
+        for i in range(1,n+1):
+            visited[i] = 1
+            recurse(str(i),visited)
+            if ans!=0:
+                break
+            visited[i] = 0
+        return ans
+
+############ USING OPTIMIZED METHOD
+class Solution:
+    def getPermutation(self, n: int, k: int) -> str:
+      l = [i for i in range(1,n+1)]
+      k -= 1
+      t = ""
+      fact = 1
+      for i in range(1,n):
+          fact *= i
+      while True:
+          t = t + str(l[k//fact])        # CHOOSE THE NUMBER FROM THE ARRAY WHOSE INDEX IS EQUAL TO THE QUOTIENT OF THE RANK AND THE FACTORIAL (N-1)
+          l.remove(l[k//fact])           # REMOVE THAT PARTICULAR ELEMENT FROM THE LIST
+          k = k % fact                   # CHANGE THE RANK BASED ON THE GROUP IT HAS
+          if len(l)==0:
+              break
+          fact = fact //len(l)           # CHANGE THE FACTORIAL (EG: FROM N-1 TO N-2)
+      return t
+      
+######## WATCH: https://www.youtube.com/watch?v=wT7gcXLYoao
+######## ALSO READ: https://leetcode.com/problems/permutation-sequence/discuss/696595/C%2B%2B-or-Very-Easy-and-Detailed-Explanation-(Idea-%2B-code)
