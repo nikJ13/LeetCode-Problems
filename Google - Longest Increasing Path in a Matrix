@@ -30,6 +30,8 @@ n == matrix[i].length
 1 <= m, n <= 200
 0 <= matrix[i][j] <= 231 - 1
 ##################################################
+
+### Naive DFS Approach
 class Solution:
     def longestIncreasingPath(self, matrix: List[List[int]]) -> int:
         n = len(matrix)
@@ -50,4 +52,35 @@ class Solution:
         for i in range(n):
             for j in range(m):
                 dfs(i,j,-1,1)
+        return ans
+
+
+### DFS approach + memoization (storing the results in another matrix) Tc: O(n*m); Sc: O(n)
+class Solution:
+    def longestIncreasingPath(self, matrix: List[List[int]]) -> int:
+        n = len(matrix)
+        m = len(matrix[0])
+        visited = [[0 for _ in range(m)] for _ in range(n)]
+        ans,temp = 0,0
+        def dfs(x,y,element):
+            nonlocal visited,ans
+            if x<0 or x>=n or y<0 or y>=m or matrix[x][y]<=element:
+                return 0
+            if visited[i][j]!=0:
+                return visited[i][j]
+            #ans = max(ans,count)
+            b = 1 + dfs(x+1,y,matrix[x][y])
+            t = 1 + dfs(x-1,y,matrix[x][y])
+            l = 1 + dfs(x,y-1,matrix[x][y])
+            r = 1 + dfs(x,y+1,matrix[x][y])
+            return max(b,t,l,r)
+        
+        for i in range(n):
+            for j in range(m):
+                res = dfs(i,j,-1)
+                visited[i][j] = res
+        print(visited)
+        for i in range(n):
+            temp = max(visited[i])
+            ans = max(ans,temp)
         return ans
