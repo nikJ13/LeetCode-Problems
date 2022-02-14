@@ -1,0 +1,75 @@
+#################QUESTION########################
+You are given a string s and two integers x and y. You can perform two types of operations any number of times.
+
+Remove substring "ab" and gain x points.
+For example, when removing "ab" from "cabxbae" it becomes "cxbae".
+Remove substring "ba" and gain y points.
+For example, when removing "ba" from "cabxbae" it becomes "cabxe".
+Return the maximum points you can gain after applying the above operations on s.
+
+ 
+
+Example 1:
+
+Input: s = "cdbcbbaaabab", x = 4, y = 5
+Output: 19
+Explanation:
+- Remove the "ba" underlined in "cdbcbbaaabab". Now, s = "cdbcbbaaab" and 5 points are added to the score.
+- Remove the "ab" underlined in "cdbcbbaaab". Now, s = "cdbcbbaa" and 4 points are added to the score.
+- Remove the "ba" underlined in "cdbcbbaa". Now, s = "cdbcba" and 5 points are added to the score.
+- Remove the "ba" underlined in "cdbcba". Now, s = "cdbc" and 5 points are added to the score.
+Total score = 5 + 4 + 5 + 5 = 19.
+Example 2:
+
+Input: s = "aabbaaxybbaabb", x = 5, y = 4
+Output: 20
+ 
+
+Constraints:
+
+1 <= s.length <= 105
+1 <= x, y <= 104
+s consists of lowercase English letters.
+#################################################
+class Solution:
+    def maximumGain(self, s: str, x: int, y: int) -> int:
+        stack1 = []
+        stack2 = []
+        #stack1.append(s[0])
+        n = len(s)
+        counter = x>y
+        count = 0
+        for i in range(n):
+            if len(stack1)!=0:
+                if counter:
+                    if stack1[-1]+s[i]=="ab":
+                        count += x
+                        stack1.pop()
+                    else:
+                        stack1.append(s[i])
+                else:
+                    if stack1[-1]+s[i]=="ba":
+                        count += y
+                        stack1.pop()
+                    else:
+                        stack1.append(s[i])
+            else:
+                stack1.append(s[i])
+        m = len(stack1)
+        for j in range(m):
+            if len(stack2)!=0:
+                if counter:
+                    if stack2[-1]+stack1[j]=="ba":
+                        count += y
+                        stack2.pop()
+                    else:
+                        stack2.append(stack1[j])
+                else:
+                    if stack2[-1]+stack1[j]=="ab":
+                        count += x
+                        stack2.pop()
+                    else:
+                        stack2.append(stack1[j])
+            else:
+                stack2.append(stack1[j])
+        return count
