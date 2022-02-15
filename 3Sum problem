@@ -29,10 +29,10 @@ class Solution:
                         l.append([nums[i],nums[start],nums[end]])
                     if nums[start]+nums[end]<sum1:
                         k = start
-                        while nums[start]==nums[k] and start!=end:
+                        while nums[start]==nums[k] and start!=end:     #this loop is used to avoid the duplicates that do not satisfy the condition
                             start += 1
                     else:
                         k = end
-                        while nums[end]==nums[k] and start!=end:
+                        while nums[end]==nums[k] and start!=end:       #this loop is used to avoid the duplicates that do not satisfy the condition
                             end -= 1
         return l
