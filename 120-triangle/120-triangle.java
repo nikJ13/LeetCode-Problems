@@ -7,7 +7,6 @@ class Solution {
             cols = triangle.get(i).size();
             row = triangle.get(i);
             for(int j=0;j<cols;j++){
-                //System.out.println(row.get(j));
                 if(j==0){
                     row.set(j,row.get(j) + triangle.get(i-1).get(j));
                 }else if(j==cols-1){
