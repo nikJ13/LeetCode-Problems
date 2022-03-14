@@ -35,7 +35,7 @@ class Solution {
             return piv;
         }
         int n = nums.length-1;
-        if(target>=nums[piv]&&target<=nums[n]){
+        if(target>=nums[piv]&&target<=nums[n]){  // if the target element is between the pivot element and the last element of the array, then execute accordingly
             //System.out.println("here");
             return binarySearch(nums,piv,n,target);
         }else{
