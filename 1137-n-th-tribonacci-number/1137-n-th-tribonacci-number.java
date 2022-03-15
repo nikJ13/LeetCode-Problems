@@ -1,5 +1,5 @@
 class Solution {
-    int[] dp;
+    int[] dp; // global memoization array; this initially means that 'dp' is null
     public int helper(int n,int[] dp){
         if(dp[n]!=-1){
             return dp[n];
@@ -8,7 +8,7 @@ class Solution {
         return dp[n];
     }
     public int tribonacci(int n) {
-        dp = new int[n+1];
+        dp = new int[n+1]; // 'dp' is defined as an array here, with size of 'n+1'
         for(int i=0;i<n+1;i++){
             if(i==0){
                 dp[i] = 0;
