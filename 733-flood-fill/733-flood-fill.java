@@ -1,19 +1,17 @@
 class Solution {
-    public static void recursive(int x, int y,int n,int m,int newColor,int color,int[][] image){
-            if(x<0 || x>=n || y<0 || y>=m || image[x][y]!=color || image[x][y]==newColor){
-                return;
-            }
-            image[x][y] = newColor;
-            recursive(x+1,y,n,m,newColor,color,image);
-            recursive(x,y+1,n,m,newColor,color,image);
-            recursive(x-1,y,n,m,newColor,color,image);
-            recursive(x,y-1,n,m,newColor,color,image);
+    public void helper(int[][] img, int x, int y, int n, int m, int oldColor, int newColor){
+        if(x>=n || x<0 || y>=m || y<0 || img[x][y]!=oldColor || img[x][y]==newColor){
+            return;
         }
+        img[x][y] = newColor;
+        helper(img,x+1,y,n,m,oldColor,newColor);
+        helper(img,x,y+1,n,m,oldColor,newColor);
+        helper(img,x-1,y,n,m,oldColor,newColor);
+        helper(img,x,y-1,n,m,oldColor,newColor);
+    }
     public int[][] floodFill(int[][] image, int sr, int sc, int newColor) {
-        int color = image[sr][sc];
-        int n = image.length;
-        int m = image[0].length;
-        recursive(sr,sc,n,m,newColor,color,image);
+        int oldColor = image[sr][sc];
+        helper(image,sr,sc,image.length,image[0].length,oldColor,newColor);
         return image;
     }
 }
