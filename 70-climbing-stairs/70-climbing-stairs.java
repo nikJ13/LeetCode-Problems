@@ -1,29 +1,24 @@
 class Solution {
-    public static int recurse(int n, int[] arr){
-        if(n==1){
-            return 1;
-        }else if(n<0){
-            return 0;
+    int[] dp;
+    public int helper(int[] dp, int n){
+        if(dp[n]!=-1){
+            return dp[n];
         }
-        if(arr[n]!=0){
-            return arr[n];
-        }
-        //System.out.println(n);
-        arr[n] = recurse(n-1,arr) + recurse(n-2,arr);
-        return arr[n];
+        dp[n] = helper(dp,n-1) + helper(dp,n-2);
+        return dp[n];
     }
     public int climbStairs(int n) {
-        int[] arr = new int[n+1];
-        for(int i=1;i<=n;i++){
+        dp = new int[n+1];
+        for(int i=0;i<n+1;i++){
             if(i==1){
-                arr[i] = 1;
-            }else if(i==2){
-                arr[i] = 2;
+                dp[i] = 1;
+            }else if (i==2){
+                dp[i] = 2;
             }else{
-                arr[i] = 0;
+                dp[i] = -1;
             }
         }
-        int a = recurse(n,arr);
-        return a;
+        return helper(dp,n);
+        
     }
 }
