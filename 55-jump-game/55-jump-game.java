@@ -1,5 +1,4 @@
 class Solution {
-   //oolean res = false;
     public boolean canJump(int[] nums) {
         if(nums.length==1){
             return true;
