@@ -1,1 +1,1 @@
-​
+​Just like the 01-matrix problem. Here, calculating distances of every zero from nearest one through dynamic programming. (that is, the problem is divied into sub problems, where the distance of each zero cell from one cell is calculated and their results are used to calculate the distances of the further cells
