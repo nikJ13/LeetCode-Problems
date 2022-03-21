@@ -12,7 +12,7 @@ class Solution {
     public int countSubIslands(int[][] grid1, int[][] grid2) {
         int n = grid1.length;
         int m = grid1[0].length;
-        for(int i=0;i<n;i++){
+        for(int i=0;i<n;i++){   //first marking all the invalid islands in grid2 as '0' because they should not be counted; should be considered as good as water
             for(int j=0;j<m;j++){
                 if(grid2[i][j]==1 && grid1[i][j]==0){
                     helper(grid2,i,j,n,m);
@@ -20,7 +20,7 @@ class Solution {
             }
         }
         int count=0;
-        for(int i=0;i<n;i++){
+        for(int i=0;i<n;i++){   //then using normal dfs to count the leftover valid islands in grid2
             for(int j=0;j<m;j++){
                 if(grid2[i][j]==1){
                     helper(grid2,i,j,n,m);
