@@ -16,7 +16,7 @@ class Solution {
                 }
             }
         }
-        for(int j = 0;j<triangle.size();j++){
+        for(int j = 0;j<triangle.size();j++){     // to find the minimum of the last row
             if(triangle.get(triangle.size()-1).get(j)<ans){
                 ans = triangle.get(triangle.size()-1).get(j);
             }
