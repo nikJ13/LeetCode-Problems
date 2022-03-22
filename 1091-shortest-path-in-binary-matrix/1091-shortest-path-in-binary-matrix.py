@@ -9,9 +9,9 @@ class Solution:
         while que:
             node = que.pop(0)
             for i in range(8):
-                if node[0]+moves[i][0]<0 or node[0]+moves[i][0]>=n or node[1]+moves[i][1]<0 or node[1]+moves[i][1]>=n or grid[node[0]+moves[i][0]][node[1]+moves[i][1]]==1:
-                    continue
-                if visited[node[0]+moves[i][0]][node[1]+moves[i][1]]==-1:
+                # if node[0]+moves[i][0]<0 or node[0]+moves[i][0]>=n or node[1]+moves[i][1]<0 or node[1]+moves[i][1]>=n or grid[node[0]+moves[i][0]][node[1]+moves[i][1]]==1:
+                #     continue
+                if 0<=node[0]+moves[i][0]<n and 0<=node[1]+moves[i][1]<n and grid[node[0]+moves[i][0]][node[1]+moves[i][1]]!=1 and visited[node[0]+moves[i][0]][node[1]+moves[i][1]]==-1:
                     visited[node[0]+moves[i][0]][node[1]+moves[i][1]] = visited[node[0]][node[1]] + 1
                     que.append((node[0]+moves[i][0],node[1]+moves[i][1]))
         return visited[n-1][n-1]
