@@ -19,6 +19,9 @@ class Solution {
                     count ++;
                 }
             }
+            if(count==4){
+                break;
+            }
         }
         //System.out.println(grid[0][1]+" "+grid[2][2]);
         Queue<int[]> queue=new LinkedList<>();
