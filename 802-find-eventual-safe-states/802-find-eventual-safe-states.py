@@ -18,10 +18,8 @@ class Solution:
             vis[node] = 1
             for i in range(len(graph[node])):
                 if not recurse(graph[node][i],vis):
-                    vis[node] = 0
                     cycle.add(node)
                     return False
-            #vis[node] = 0
             safe.add(node)
             return True
             
