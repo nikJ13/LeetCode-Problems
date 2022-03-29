@@ -21,7 +21,7 @@ class Solution:
                     vis[node] = 0
                     cycle.add(node)
                     return False
-            vis[node] = 0
+            #vis[node] = 0
             safe.add(node)
             return True
             
