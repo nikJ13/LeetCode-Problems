@@ -4,6 +4,7 @@ class Solution:
         left = 0
         right = 0
         ans = 0
+        # Expand your window (right pointer) until you hit 0 or end of list and then contract (left pointer) each time counting the number of negative entries. Count max length only when number of negatives is even. Repeat until all elements are scanned.
         while left<len(nums):
             while right<len(nums) and nums[right]!=0:
                 if nums[right]<0:
