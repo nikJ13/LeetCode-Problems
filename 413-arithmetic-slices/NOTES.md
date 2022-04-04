@@ -1,1 +1,1 @@
-​
+​Here, the dp array stores the number of such subarrays, wherein the number at each index of the dp array signifies the number of such subarrays before this index + the sub arrays that end at that particular index (which is equal to length from left [where we start counting as the subarray with equal difference between contiguous elements] to the current index - 3). Suppose the difference between the contiguous elements is different, then the previous index value in the dp array is simply passed on to the current index and the diff variable value is changed.
