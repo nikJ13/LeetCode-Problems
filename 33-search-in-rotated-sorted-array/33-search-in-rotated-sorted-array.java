@@ -1,45 +1,39 @@
 class Solution {
-    public int binarySearch(int[] arr,int start,int end,int target){
-        //int mid = start + (end-start)/2;
-        while(start<=end){
-            int mid = start + (end-start)/2;
-            //System.out.println(start);
-            //System.out.println(end);
-            if(arr[mid]<target){
-                start = mid+1;
-            }else if(arr[mid]>target){
-                end = mid-1;
-            }else{
-                return mid;
-            }
-        }
-        return -1;
-    }
-    public int pivotFind(int[] arr){ // function to find the pivot element; the element which is the smallest in the array, after the array has been rotated
-        int left = 0;
-        int right = arr.length-1;
-        //int mid = left + (right-left)/2;
+    
+    private int searchpivot(int[] nums){
+        int left = 0, right = nums.length-1;
         while(left<right){
-            int mid = left + (right-left)/2;
-            if(arr[mid]>=arr[0]){
-                left = mid+1;
+            int mid = left+(right-left)/2;
+            if(nums[mid]>=nums[0]){
+                left = mid + 1;
             }else{
                 right = mid;
             }
         }
         return left;
     }
-    public int search(int[] nums, int target) {
-        int piv = pivotFind(nums);
-        if(nums[piv]==target){
-            return piv;
+    private int binarysearch(int[] nums, int left, int right,int target){
+        while(left<=right){
+            int mid = left + (right-left)/2;
+            if(nums[mid]==target){
+                return mid;
+            }else if(nums[mid]<target){
+                left = mid+1;
+            }else{
+                right = mid - 1;
+            }
         }
-        int n = nums.length-1;
-        if(target>=nums[piv]&&target<=nums[n]){  // if the target element is between the pivot element and the last element of the array, then execute accordingly
-            //System.out.println("here");
-            return binarySearch(nums,piv,n,target);
+        return -1;
+    }
+    public int search(int[] nums, int target) {
+        int pivot = searchpivot(nums);
+        if(nums[pivot]==target){
+            return pivot;
+        }
+        if(nums[pivot]<=target && nums[nums.length-1]>=target){
+            return binarysearch(nums,pivot,nums.length-1,target);
         }else{
-            return binarySearch(nums,0,piv-1,target);
+            return binarysearch(nums,0,pivot-1,target);
         }
     }
 }
