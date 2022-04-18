@@ -18,8 +18,8 @@ class Solution {
                         ans.add(temp_arr);
                         start++;
                         end--;
-                        while(start<end && nums[start]==nums[start-1]){
-                            start++;
+                        while(start<end && nums[end]==nums[end+1]){
+                            end--;
                         }
                     }else if(nums[start]+nums[end]<new_sum){
                         int temp = nums[start];
