@@ -9,7 +9,8 @@ class Solution:
                 return
             visited[vertex] = 1
             for neighbor in dict1[vertex]:
-                helper(dict1,visited,neighbor)
+                if(visited[neighbor]==0):
+                    helper(dict1,visited,neighbor)
         for i in range(n):
             for j in range(n):
                 if i!=j and matrix[i][j]==1:
