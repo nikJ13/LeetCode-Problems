@@ -22,11 +22,11 @@ class Solution {
         if((node!=null && subnode==null)||(node==null && subnode!=null)){
             return false;
         }
-            if(node.val!=subnode.val){
-                return false;
-            }
-            return helper(node.left,subnode.left) && helper(node.right,subnode.right);
-        
+        // the only case left is when the node is not null and subnode is also not null
+        if(node.val!=subnode.val){
+            return false;
+        }
+        return helper(node.left,subnode.left) && helper(node.right,subnode.right);
     }
     public boolean isSubtree(TreeNode root, TreeNode subRoot) {
         if(root!=null){
