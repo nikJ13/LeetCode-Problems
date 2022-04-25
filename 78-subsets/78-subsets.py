@@ -1,7 +1,6 @@
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
         ans = []
-        
         def helper(nums,index,temp):
             ans.append(temp[:])
             for i in range(index,len(nums)):
