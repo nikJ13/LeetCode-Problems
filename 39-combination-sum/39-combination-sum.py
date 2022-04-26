@@ -3,16 +3,14 @@ class Solution:
         ans = []
         n = len(candidates)
         def helper(index,number,temp):
-            #print("there",number)
             if number==0:
-                #print(index)
-                #print(number)
-                #print("here")
                 ans.append(temp[:])
                 return
             if number<0:
                 return
             for i in range(index,n):
+                if number-candidates[i]<0:
+                    continue
                 temp.append(candidates[i])
                 helper(i,number-candidates[i],temp)
                 temp.pop()
