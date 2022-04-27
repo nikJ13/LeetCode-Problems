@@ -8,7 +8,7 @@ class Solution:
                 ans.append(temp[:])
                 return
             for i in range(index,n):
-                if (i!=index and arr[i]==arr[i-1]) or number-arr[i]<0:
+                if (i!=index and arr[i]==arr[i-1]) or number-arr[i]<0: # basically this allows to take consecutive repeating elements rather than alternating/far away repeating elements, just right few test cases to understand it
                     continue
                 temp.append(arr[i])
                 helper(i+1,arr,number-arr[i],temp)
