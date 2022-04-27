@@ -8,8 +8,6 @@ class Solution:
                 #print("here")
                 ans.append(temp[:])
                 return
-            if number<0:
-                return
             for i in range(index,n):
                 if (i!=index and arr[i]==arr[i-1]) or number-arr[i]<0:
                     continue
