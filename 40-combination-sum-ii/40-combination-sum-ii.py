@@ -5,7 +5,6 @@ class Solution:
         
         def helper(index,arr,number,temp):
             if number==0:
-                #print("here")
                 ans.append(temp[:])
                 return
             for i in range(index,n):
