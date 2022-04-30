@@ -18,7 +18,6 @@ class Solution:
                     dp[i][j] = nums[i]
                 if j>=n-3:
                     max1 = max(max1,dp[i][j])
-        print(dp)
         return max1
         
         
