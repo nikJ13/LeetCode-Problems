@@ -47,7 +47,6 @@ class Solution {
             head2 = head2.next;
         }
         if(carry!=0){
-            System.out.println("here");
             curr.next = new ListNode();
             curr = curr.next;
             curr.val = carry;
