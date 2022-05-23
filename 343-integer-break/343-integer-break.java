@@ -6,9 +6,9 @@ class Solution {
             int max = Integer.MIN_VALUE;
             for(int j=1;j<=i/2;j++){ // we iterate till i by two because the numbers beyond that half will give the same product value
                 int product = Math.max(dp[j],j)*Math.max(dp[i-j],i-j); // here, for each number, we check if we can get either the max product by considering then current number itself or the max product for the current number
-                max = Math.max(max,product);
+                max = Math.max(max,product); // keeping track of the max products found
             }
-            dp[i] = max;
+            dp[i] = max; // finally the greatest product will be the ans for each element of the dp array
         }
         return dp[n];
     }
