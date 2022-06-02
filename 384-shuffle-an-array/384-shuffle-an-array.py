@@ -5,9 +5,6 @@ class Solution:
         self.orig = list(nums)
 
     def reset(self) -> List[int]:
-        # self.arr = self.orig
-        # self.orig = list(self.orig)
-        # return self.arr
         return self.orig
 
     def shuffle(self) -> List[int]:
