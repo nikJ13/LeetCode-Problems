@@ -1,7 +1,7 @@
 class Solution {
     public int lengthOfLongestSubstring(String s) {
         //System.out.println(s.length());
-        int[] arr = new int[128];
+        int[] arr = new int[128]; //because the string can contain any special characters/symbols/alphabets
         int ans = 0, start = 0, count = 0;
         for(int end=0;end<s.length();end++){
             while(arr[s.charAt(end)]==1){
