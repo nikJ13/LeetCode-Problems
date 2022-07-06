@@ -16,23 +16,24 @@ class Solution {
         if(list1==null){
             return list2;
         }
-        if(list2==null){return list1;}
-        ListNode head1 = list1;
-        ListNode head2 = list2;
-        ListNode head = new ListNode(0,null);
-        ListNode curr = head;
-        while(head1!=null && head2!=null){
-            if(head1.val<=head2.val){
-                curr.next = head1; 
-                head1 = head1.next; 
+        if(list2==null){
+            return list1;
+        }
+        ListNode temp = new ListNode();
+        ListNode curr = temp;
+        while(list1!=null && list2!=null){
+            if(list1.val>=list2.val){
+                curr.next = list2;
+                list2 = list2.next;
             }
             else{
-                curr.next = head2; 
-                head2 = head2.next;  
+                curr.next = list1;
+                list1 = list1.next;
             }
+            //System.out.println(curr.val);
             curr = curr.next;
         }
-        curr.next = head1==null?head2 : head1;
-        return head.next;
+        curr.next = list1==null?list2:list1;
+        return temp.next;
     }
 }
