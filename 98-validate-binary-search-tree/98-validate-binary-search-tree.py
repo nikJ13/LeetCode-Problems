@@ -10,12 +10,11 @@ class Solution:
         def recurse(leftsub,rightsub,node):
             if not node:
                 return True
-            if node:
-                if node.val>=rightsub or node.val<=leftsub:
-                    return False
-                l = recurse(leftsub,node.val,node.left) # going to left subtree
-                r = recurse(node.val,rightsub,node.right) # going to right subtree
-                return l and r
+            if node.val>=rightsub or node.val<=leftsub:
+                return False
+            l = recurse(leftsub,node.val,node.left) # going to left subtree
+            r = recurse(node.val,rightsub,node.right) # going to right subtree
+            return l and r
         return recurse(float("-inf"),float("inf"),root)
         
                 
