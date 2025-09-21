@@ -1,22 +1,23 @@
 class Solution:
     def evalRPN(self, tokens: List[str]) -> int:
-        l = []
-        operatorMap = { 
-            "*": lambda x, y: x*y, 
-            "+": lambda x, y: x+y, 
-            "-": lambda x, y: x-y, 
-            "/": lambda x, y: int(x/y)
-        }
-        
-        for token in tokens:
-            
-            if token not in operatorMap:
-                l.append(int(token))
-            
-            # if operator, pop 2 numbers and perform operator
+        st = []
+        for t in tokens:
+            # print(st)
+            if t[0]=="-" and len(t)>1:
+                st.append(t)
+                continue
+            if not t.isnumeric():
+                op2 = int(st.pop())
+                op1 = int(st.pop())
+                if t=="+":
+                    ans = op1 + op2
+                elif t=="/":
+                    ans = int(op1 / op2)
+                elif t=="-":
+                    ans = op1 - op2
+                elif t=="*":
+                    ans = op1 * op2
+                st.append(str(ans))
             else:
-                num2, num1 = l.pop(), l.pop()
-                result = operatorMap[token](num1, num2)
-                l.append(result)  
-        
-        return l.pop()
+                st.append(t)
+        return int(st[-1])
