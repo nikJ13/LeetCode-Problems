@@ -19,10 +19,6 @@ class Solution:
             k = len(que)
             for _ in range(k):
                 node = que.pop(0)
-                top = (node[0]-1, node[1])
-                left = (node[0], node[1]-1)
-                bottom = (node[0]+1, node[1])
-                right = (node[0], node[1]+1)
                 if node[0] - 1 >= 0 and grid[node[0]-1][node[1]]!=2 and grid[node[0]-1][node[1]]!=0:
                     grid[node[0]-1][node[1]] = 2
                     que.append((node[0]-1,node[1]))
