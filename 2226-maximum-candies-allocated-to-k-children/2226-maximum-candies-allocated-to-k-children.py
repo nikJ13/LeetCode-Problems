@@ -12,11 +12,9 @@ class Solution:
         while start<=end:
             mid = (start+end)//2
             valid = check(candies, mid)
-            # print(mid)
-            # print(valid)
             if valid:
                 max_val = mid
-                start = mid + 1
+                start = mid+ 1
             else:
                 end = mid - 1
         
