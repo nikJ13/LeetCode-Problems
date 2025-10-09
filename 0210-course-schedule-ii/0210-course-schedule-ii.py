@@ -9,12 +9,11 @@ class Solution:
             if trans[1] not in adj:
                 adj[trans[1]] = []
             adj[trans[1]].append(trans[0])
-        que = []
+        que = deque()
         for i in range(numCourses):
             if indegree[i]==0:
                 que.append(i)
         res = []
-        que = deque(que)
         while que:
             node = que.popleft()
             for neighs in adj[node]:
