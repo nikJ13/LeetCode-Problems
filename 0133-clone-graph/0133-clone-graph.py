@@ -11,18 +11,6 @@ class Solution:
     def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
         if node is None:
             return None
-        # adj = {}
-        # visited = set()
-        # def traverse(curr_node):
-        #     if not curr_node.neighbors:
-        #         return
-        #     adj[curr_node] = curr_node.neighbors
-        #     for neighs in curr_node.neighbors:
-        #         if neighs not in visited:
-        #             visited.add(neighs)
-        #             traverse(neighs)
-        # visited.add(node)
-        # traverse(node)
         
         newvisited = {}
         def cloning(curr_node):
@@ -40,7 +28,6 @@ class Solution:
             newvisited[curr_node].neighbors = newneighs
             return newvisited[curr_node]
         res = cloning(node)
-        # print(res.neighbors)
         return res
 
 
