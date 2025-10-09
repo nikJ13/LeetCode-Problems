@@ -16,7 +16,6 @@ class Solution:
         res = []
         que = deque(que)
         while que:
-            print(que)
             node = que.popleft()
             for neighs in adj[node]:
                 indegree[neighs] -= 1
