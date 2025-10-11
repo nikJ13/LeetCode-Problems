@@ -11,7 +11,7 @@ class HitCounter:
         if starting_ts<0:
             return len(self.hits)
         count = 0
-        print(self.hits)
+        #print(self.hits)
         for ts, _ in self.hits:
             if ts>=starting_ts:
                 count += 1
