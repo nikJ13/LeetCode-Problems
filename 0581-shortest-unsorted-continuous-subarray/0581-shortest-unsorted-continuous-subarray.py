@@ -11,5 +11,4 @@ class Solution:
             min_right = min(min_right, nums[i])
             if min_right < nums[i]:
                 start = i
-        print(start, end)
         return end - start + 1
