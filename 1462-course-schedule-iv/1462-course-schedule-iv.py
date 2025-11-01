@@ -7,15 +7,13 @@ class Solution:
 
         def check_pre(next_one, queue, visited):
             while queue:
-                k = len(queue)
-                for _ in range(k):
-                    node = queue.popleft()
-                    if node==next_one:
-                        return True
-                    for neighs in adj[node]:
-                        if neighs not in visited:
-                            visited.add(neighs)
-                            queue.append(neighs)
+                node = queue.popleft()
+                if node==next_one:
+                    return True
+                for neighs in adj[node]:
+                    if neighs not in visited:
+                        visited.add(neighs)
+                        queue.append(neighs)
             return False
                         
                     
