@@ -4,7 +4,6 @@ class Solution:
         for key, val in replacements:
             adj[key] = list(val)
         ans = ""
-
         def dfs(ch):
             temp = ""
             for neighs in adj[ch]:
@@ -15,7 +14,6 @@ class Solution:
                 else:
                     temp += neighs
             return temp
-        
         for ch in text:
             if ch=="%":
                 continue
