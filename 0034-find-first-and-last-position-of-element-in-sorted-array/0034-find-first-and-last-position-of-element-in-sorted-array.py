@@ -3,8 +3,6 @@ class Solution:
         start, end = 0, len(nums)-1
         ind = []
         while start<=end:
-            print("start", start)
-            print("end", end)
             mid = (start+end) // 2
             if target>=nums[mid]:
                 if nums[mid]==target:
@@ -16,7 +14,6 @@ class Solution:
             return [-1,-1]
         min_ind = min(ind)
         max_ind = max(ind)
-        print(ind)
         while min_ind>=0 and nums[min_ind]==target:
             min_ind -= 1
         while max_ind<len(nums) and nums[max_ind]==target:
