@@ -10,7 +10,6 @@ class Solution:
         ans = prev
         curr = head
         while curr:
-            print(prev.val)
             flag = 0
             while curr.next and curr.next.val==curr.val:
                 curr = curr.next
