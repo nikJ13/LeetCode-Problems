@@ -18,6 +18,8 @@ class Solution:
                 prev.next = curr
                 prev = curr
             curr = curr.next
-        if flag==1:
-            prev.next = None
+            if curr==None:
+                prev.next = None
+        # if flag==1:
+        #     prev.next = None
         return ans.next
