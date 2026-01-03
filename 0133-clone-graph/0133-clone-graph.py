@@ -34,7 +34,7 @@ class Solution:
                     visited[neighs] = copy_neighs
                     # add the neighbor and its copy to the que
                     que.append((neighs, copy_neighs))
-                # add this copy as a neighbor of the copy_node
+                # add the copy that exists for this neighbor to the current copy node's neighbors list
                 copy_node.neighbors.append(visited[neighs])
         return copy_head
     
