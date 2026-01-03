@@ -9,26 +9,36 @@ class Node:
 from typing import Optional
 class Solution:
     def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
-        if node is None:
-            return None
-        
-        newvisited = {}
-        def cloning(curr_node):
-            # print(newvisited)
-            if not curr_node.neighbors:
-                return Node(curr_node.val,None)
-            value = curr_node.val
-            newneighs = []
-            newNode = Node(value)
-            newvisited[curr_node] = newNode
-            for n in curr_node.neighbors:
-                if n not in newvisited:
-                    newvisited[n] = cloning(n)
-                newneighs.append(newvisited[n])
-            newvisited[curr_node].neighbors = newneighs
-            return newvisited[curr_node]
-        res = cloning(node)
-        return res
-
-
-        
+        #print(node)
+        if node==None:
+            #print("here")
+            return node
+        visited = {}
+        #print(here)
+        # iterate through each node
+        # on the way make new nodes and the graph for it
+        copy_head = Node(node.val)
+        que = [(node,copy_head)]
+        visited[node] = copy_head
+        while que:
+            curr_node, copy_node = que.pop(0)
+            # check if current node is in visited list
+            # if curr_node in visited:
+            #     continue
+            for neighs in curr_node.neighbors:
+                # check if the neighbors are already visited or not
+                if neighs not in visited:
+                    # make a new copy of the neighbor
+                    copy_neighs = Node(neighs.val)
+                    # add this neighbor to visited
+                    visited[neighs] = copy_neighs
+                    # add the neighbor and its copy to the que
+                    que.append((neighs, copy_neighs))
+                # add this copy as a neighbor of the copy_node
+                copy_node.neighbors.append(visited[neighs])
+        return copy_head
+    
+    # 1-> 2,4
+    # for each neigh of 1, if neigh is not in visited, that means there are no copy neighs formed yet
+    # so you make a copy neigh of a neigh and add the neigh to the visited node
+    # add this neigh to the que
