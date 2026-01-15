@@ -6,7 +6,6 @@ class Solution:
         def quick_sort(arr,left,right):
             if right<=left:
                 return
-            # TODO
 
             pivot_idx = calculate_partition(arr,left,right)
 
