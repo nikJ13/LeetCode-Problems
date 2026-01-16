@@ -17,12 +17,13 @@ class Solution:
                     end = mid-1
                 #print(start,end)
             return -1
-        
+        flag = 0
         for i in range(1,len(nums)):
             if nums[i-1]>nums[i]:
                 left, right = i-1,i
+                flag = 1
                 break
-        if left==0 and right==len(nums)-1:
+        if left==0 and right==len(nums)-1 and flag==0:
             return search(left, right)
         left_ans = search(0,left)
         right_ans = search(right,len(nums)-1)
