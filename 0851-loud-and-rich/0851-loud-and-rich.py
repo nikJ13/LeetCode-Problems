@@ -35,14 +35,14 @@ class Solution:
                 queue.append((i,i))
                 visited.add(i)
         queue = deque(queue)
-        # there can be an issue where a node is not pointing to another node
-        # so in that case its quiet score should not be considered
+        
         while queue:
             node, quietest_idx = queue.popleft()
             # iterate through all its children
             for child in adj[node]:
                 indegree[child]-=1
                 if child not in visited:
+                    # check if the current quietest node for the child is quieter than the parent's quietest node
                     if quiet[quietest_idx]<quiet[ans[child]]:
                         ans[child] = quietest_idx
                     if indegree[child]==0:
