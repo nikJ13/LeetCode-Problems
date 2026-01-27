@@ -72,21 +72,16 @@ class Solution:
             curr_max_depth = float("-inf")
             for obj in list_obj:
                 if obj.isInteger():
-                    # print("here")
                     sum_lvl += obj.getInteger()
                     weight_sum_lvl += obj.getInteger()*curr_depth
                     curr_max_depth = max(curr_depth,curr_max_depth)
                 else:
-                    # print("there")
                     nested_list = obj.getList()
                     sum_prev_lvl, weight_sum_prev_lvl, max_depth = helper(nested_list,curr_depth+1)
                     sum_lvl += sum_prev_lvl
                     weight_sum_lvl += weight_sum_prev_lvl
                     curr_max_depth = max(curr_max_depth, max_depth)
                     # keep track of the depths here
-            # print(sum_lvl)
-            # print(weight_sum_lvl)
-            # print(curr_max_depth)
             return sum_lvl, weight_sum_lvl, curr_max_depth
         
         sum_elements, weight_sum, final_max_depth = helper(nestedList,1)
