@@ -77,10 +77,10 @@ class Solution:
                     curr_max_depth = max(curr_depth,curr_max_depth)
                 else:
                     nested_list = obj.getList()
-                    sum_prev_lvl, weight_sum_prev_lvl, max_depth = helper(nested_list,curr_depth+1)
+                    sum_prev_lvl, weight_sum_prev_lvl, prev_max_depth = helper(nested_list,curr_depth+1)
                     sum_lvl += sum_prev_lvl
                     weight_sum_lvl += weight_sum_prev_lvl
-                    curr_max_depth = max(curr_max_depth, max_depth)
+                    curr_max_depth = max(curr_max_depth, prev_max_depth)
                     # keep track of the depths here
             return sum_lvl, weight_sum_lvl, curr_max_depth
         
