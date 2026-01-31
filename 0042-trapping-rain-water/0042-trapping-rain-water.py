@@ -26,28 +26,21 @@ class Solution:
             then you must measure the water stored above the height[i] block
             water_stored += max_height - height[i]
         """
-        left,right = [], []
-        max_height_left = height[0]
-        max_height_right = height[-1]
+        left, right = 0, len(height)-1
+        max_left, max_right = height[0], height[-1]
         ans = 0
-        for i in range(len(height)):
-            # checking for left
-            if max_height_left<=height[i]:
-                max_height_left = height[i]
-                left.append(0)
-            elif max_height_left>height[i]:
-                left.append(max_height_left - height[i])
-
-            # checking for right
-            idx = len(height) - i - 1
-            if height[idx]>=max_height_right:
-                max_height_right = height[idx]
-                right = [0] + right
-            elif height[idx]<max_height_right:
-                right = [max_height_right - height[idx]] + right
-            
-        for i in range(len(height)):
-            ans += min(left[i],right[i])
-        
+        while left<right:
+            if height[left]<height[right]:
+                if max_left<=height[left]:
+                    max_left = height[left]
+                else:
+                    ans += max_left - height[left]
+                left += 1
+            else:
+                if height[right]>=max_right:
+                    max_right = height[right]
+                else:
+                    ans += max_right - height[right]
+                right -= 1
         return ans
 
