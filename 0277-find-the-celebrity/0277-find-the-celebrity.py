@@ -46,7 +46,7 @@ class Solution:
                     candidate = i
         for i in range(n):
             if candidate!=i:
-                if not knows(i,candidate) or (knows(i,candidate) and knows(candidate,i)): # if i does not know the candidate # 0 knows 1
+                if not knows(i,candidate) or (knows(i,candidate) and knows(candidate,i)): # if i does not know the candidate or there is a cyclic condition
                     return -1
         return candidate
 
