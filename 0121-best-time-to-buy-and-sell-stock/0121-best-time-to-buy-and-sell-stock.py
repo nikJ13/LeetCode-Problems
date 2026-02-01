@@ -1,10 +1,19 @@
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
-        max_profit = 0
-        temp_buy = float("inf")
-        for p in prices:
-            if p<temp_buy:
-                temp_buy = p
+        """
+        iterate through the array and
+        if curr_max>curr_element:
+            calculate the profit
+            check if this is the maximum profit
+        else:
+            curr_max = curr_element
+        """
+        curr_min = float("inf")
+        ans = 0
+        for i in range(len(prices)):
+            if curr_min<prices[i]:
+                profit = prices[i] - curr_min
+                ans = max(ans,profit)
             else:
-                max_profit = max(max_profit, p - temp_buy)
-        return max_profit
+                curr_min = prices[i]
+        return ans
