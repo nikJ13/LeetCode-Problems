@@ -31,16 +31,7 @@ class Solution:
             # if yes, need to check if there is something after the slash in the url
             # if nothing after the slash, then return False else return True
             if base_url in url:
-                counter = 0
-                for ch in url:
-                    if counter==3:
-                        return True
-                    if ch=="/":
-                        counter += 1
-                if counter==2:
-                    return True
-                else:
-                    return False
+                return True
             else:
                 return False
 
