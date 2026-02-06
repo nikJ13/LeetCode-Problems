@@ -10,6 +10,7 @@ class Solution:
         if n==1:
             return True
         adj = {i:[] for i in range(n)}
+        visited = set()
 
         for edge in edges:
             start, end = edge
@@ -32,9 +33,7 @@ class Solution:
                     temp &= dfs(child,visited,node)
             return temp
         
-        for i in range(n):
-            visited = set()
-            if not dfs(i,visited,-1) or len(visited)!=n:
-                return False
+        if not dfs(0,visited,-1) or len(visited)!=n:
+            return False
         return True
 
