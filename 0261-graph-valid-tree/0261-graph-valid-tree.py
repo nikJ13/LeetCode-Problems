@@ -6,6 +6,8 @@ class Solution:
         And there should be leaves, and there cant be cycles
         Perform a dfs from each node and keep track of the visited
         if it encounters an already visited node, then it is not a tree
+        Property of a tree is that all nodes can be connected to eachother directly or indirectly, without any cycles
+        in between
         """
         if n==1:
             return True
