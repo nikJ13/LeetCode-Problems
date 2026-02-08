@@ -20,7 +20,6 @@ class Solution:
         directions = {"up":(-1,0),"down":(1,0),"left":(0,-1),"right":(0,1)}
         maze_directions = [[set() for _ in range(m)] for _ in range(n)]
         def helper(curr_x, curr_y, prev_dir):
-            print(curr_x, curr_y)
             xchange, ychange = directions[prev_dir]
             new_x, new_y = curr_x + xchange, curr_y + ychange
             if new_x<0 or new_x>=n or new_y<0 or new_y>=m: # checking if the next move in the same prev dir will be a wall
