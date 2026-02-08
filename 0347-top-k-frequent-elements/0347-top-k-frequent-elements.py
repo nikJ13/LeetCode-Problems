@@ -20,11 +20,9 @@ class Solution:
             if len(queue)<k:
                 heapq.heappush(queue,(dict_freq[key],key))
             else:
-                freq, head = heapq.heappop(queue)
+                freq, head = queue[0]
                 if freq < dict_freq[key]:
-                    heapq.heappush(queue,(dict_freq[key],key))
-                else:
-                    heapq.heappush(queue,(freq,head))
+                    heapq.heapreplace(queue,(dict_freq[key],key))
         ans = []
         for f,a in queue:
             ans.append(a)
