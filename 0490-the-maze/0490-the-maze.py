@@ -19,6 +19,21 @@ class Solution:
         n, m = len(maze), len(maze[0])
         directions = {"up":(-1,0),"down":(1,0),"left":(0,-1),"right":(0,1)}
         maze_directions = [[set() for _ in range(m)] for _ in range(n)]
+
+        def direction_checker(curr_x, curr_y, helper, prev_dir):
+            for dirs in directions:
+                if dirs!=prev_dir:
+                    xchange, ychange = directions[dirs]
+                    new_x, new_y = curr_x + xchange, curr_y + ychange
+                    # keep a check of which directions are valid
+                    if (new_x>=0 and new_x<n) and (new_y>=0 and new_y<m):
+                        if maze[new_x][new_y]!=1 and dirs not in maze_directions[curr_x][curr_y]:
+                            maze_directions[curr_x][curr_y].add(dirs)
+                            res = helper(new_x, new_y, dirs)
+                            if res:
+                                return True
+            return False
+
         def helper(curr_x, curr_y, prev_dir):
             xchange, ychange = directions[prev_dir]
             new_x, new_y = curr_x + xchange, curr_y + ychange
@@ -26,31 +41,14 @@ class Solution:
                 # call for recursion in other directions except prev_dir
                 if [curr_x, curr_y] == destination: # we need to check if we can stop the ball
                     return True
-                for dirs in directions:
-                    if dirs!=prev_dir:
-                        xchange, ychange = directions[dirs]
-                        new_x, new_y = curr_x + xchange, curr_y + ychange
-                        # keep a check of which directions are valid
-                        if (new_x>=0 and new_x<n) and (new_y>=0 and new_y<m):
-                            if maze[new_x][new_y]!=1 and dirs not in maze_directions[curr_x][curr_y]:
-                                maze_directions[curr_x][curr_y].add(dirs)
-                                res = helper(new_x, new_y, dirs)
-                                if res:
-                                    return True
+                if direction_checker(curr_x, curr_y, helper, prev_dir):
+                    return True
             elif maze[new_x][new_y]==1: # if the next block is a wall
                 # call for recursion in other directions except prev_dir
                 if [curr_x, curr_y] == destination: # we need to check if we can stop the ball
                     return True
-                for dirs in directions:
-                    if dirs!=prev_dir:
-                        xchange, ychange = directions[dirs]
-                        new_x, new_y = curr_x + xchange, curr_y + ychange
-                        if (new_x>=0 and new_x<n) and (new_y>=0 and new_y<m):
-                            if maze[new_x][new_y]!=1 and dirs not in maze_directions[curr_x][curr_y]:
-                                maze_directions[curr_x][curr_y].add(dirs)
-                                res = helper(new_x, new_y, dirs)
-                                if res:
-                                    return True
+                if direction_checker(curr_x, curr_y, helper, prev_dir):
+                    return True
             else:
                 maze_directions[curr_x][curr_y].add(prev_dir)
                 res = helper(new_x, new_y, prev_dir)
