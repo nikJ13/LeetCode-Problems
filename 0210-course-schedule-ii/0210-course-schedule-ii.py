@@ -17,7 +17,6 @@ class Solution:
         """
         # we need to find which courses are parents of all courses; indegree of 0
         queue = deque([i for i in range(numCourses) if indegree[i]==0])
-        print(queue)
         visited = set()
         ans = []
         while queue:
