@@ -24,7 +24,6 @@ class Solution:
         trie would work here
         """
         folder.sort()
-
         ans = [folder[0]]
         for f in folder[1:]:
             last = ans[-1]
