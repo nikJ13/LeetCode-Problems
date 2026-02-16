@@ -45,5 +45,5 @@ class Solution:
         ans = []
         for i in range(len(count)):
             k = (sell[i]*count[i] + money[i])//(upgrade[i] + sell[i])
-            ans.append(k)
+            ans.append(min(k,count[i]))
         return ans
